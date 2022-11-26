@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>glove-keycloak</artifactId>
+    <name>glove-keycloak-adapter</name>
+    <artifactId>glove-keycloak-adapter</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

@@ -9,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <name>glove-eureka</name>
     <artifactId>glove-eureka</artifactId>
 
     <dependencies>

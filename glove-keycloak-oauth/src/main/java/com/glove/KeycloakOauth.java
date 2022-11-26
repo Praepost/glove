@@ -6,8 +6,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-public class KeycloakServer {
+public class KeycloakOauth {
     public static void main(String[] args) {
-        SpringApplication.run(KeycloakServer.class, args);
+        SpringApplication.run(KeycloakOauth.class, args);
     }
 }

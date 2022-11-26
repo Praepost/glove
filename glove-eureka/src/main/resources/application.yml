@@ -3,6 +3,4 @@ spring:
     name: eureka-server
   cloud:
     config:
-      import: configserver:http://localhost:8888
-
-
+      import: configserver:http://${EUREKA_HOST:localhost}:${CONFIG_SERVER_PORT:8888}/eureka/
