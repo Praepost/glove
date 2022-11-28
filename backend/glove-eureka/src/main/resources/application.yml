@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: eureka-server
+  cloud:
+    config:
+      import: configserver:http://${EUREKA_HOST:localhost}:${CONFIG_SERVER_PORT:8888}/eureka/
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: service_client
+            client-secret: UEtvymOPqsE23YHPQy9PLm9X9k1Q8XlI
