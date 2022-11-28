@@ -1,8 +1,7 @@
-# config server port
+# config configure server
 server:
   port: ${CONFIG_SERVER_PORT:8888}
 
-# config server name
 spring:
   application:
     name: config-server
