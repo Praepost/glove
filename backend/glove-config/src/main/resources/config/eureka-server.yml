@@ -1,0 +1,10 @@
+# eureka by default will register itself as a client. So, we need to set it to false.
+
+server:
+  port: ${EUREKA_SERVER_PORT:8761}
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+# eureka server port
