@@ -11,4 +11,4 @@ spring:
         registration:
           keycloak:
             client-id: service_client
-            client-secret: UEtvymOPqsE23YHPQy9PLm9X9k1Q8XlI
+            client-secret: 4FSL9OHsJEst5j9pNPMbtgrSJaNxnygc
