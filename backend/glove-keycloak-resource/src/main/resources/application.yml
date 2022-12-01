@@ -5,15 +5,10 @@ spring:
     config:
       import: configserver:http://${EUREKA_HOST:localhost}:${CONFIG_SERVER_PORT:8888}
 
-
   security:
     oauth2:
-      client:
-        resourceserver:
-          jwt:
-            jwk-set-uri: ${KEYCLOAK_REALM_CERT_URL:http://localhost:8484/auth/realms/my_realm/protocol/openid-connect/certs}
-        registration:
-          keycloak:
-            #            client-id: my_client
-            client-id: service_client
-            client-secret: UEtvymOPqsE23YHPQy9PLm9X9k1Q8XlI
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/certs
+server:
+  port: 9191

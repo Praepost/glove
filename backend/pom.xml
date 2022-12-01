@@ -10,8 +10,7 @@
 	<modules>
 		<module>glove-eureka</module>
         <module>glove-config</module>
-		<module>glove-keycloak-provider</module>
-		<module>glove-keycloak-oauth</module>
+		<module>glove-gateway-keycloak-oauth</module>
         <module>glove-keycloak-resource</module>
     </modules>
 
@@ -21,13 +20,18 @@
 		<java.version>11</java.version>
 		<lib.spring-boot.version>2.7.5</lib.spring-boot.version>
 		<lib.spring-cloud.version>2021.0.5</lib.spring-cloud.version>
+		<lib.spring-cloud.config.version>3.1.5</lib.spring-cloud.config.version>
 		<lib.jaxb.version>2.3.2</lib.jaxb.version>
 		<lib.postgres.version>42.3.0</lib.postgres.version>
 		<lib.lombok.version>1.18.24</lib.lombok.version>
-		<lib.mapstruct.version>1.4.2.Final</lib.mapstruct.version>
+		<lib.mapstruct.version>1.5.2.Final</lib.mapstruct.version>
 		<lib.flyway-core.version>9.8.2</lib.flyway-core.version>
 		<lib.swagger.version>2.8.0</lib.swagger.version>
 		<lib.keycloak.version>12.0.3</lib.keycloak.version>
+		<lib.nimbus.version>9.22</lib.nimbus.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+
 	</properties>
 
 	<dependencyManagement>
@@ -74,6 +78,15 @@
 			<scope>import</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-resource-server -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+			<version>${lib.spring-boot.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+
 		<!-- import dependency management from spring cloud -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -84,9 +97,23 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+			<version>${lib.spring-cloud.config.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lib.lombok.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${lib.mapstruct.version}</version>
 		</dependency>
 
 		<dependency>
@@ -108,6 +135,12 @@
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>oauth2-oidc-sdk</artifactId>
+			<version>${lib.nimbus.version}</version>
+		</dependency>
 	</dependencies>
 	</dependencyManagement>
 
@@ -118,6 +151,15 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bootstrap</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -141,11 +183,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${lib.postgres.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bootstrap</artifactId>
 		</dependency>
 	</dependencies>
 
