@@ -1,9 +1,10 @@
 spring:
-  application:
-    name: keycloak-resource
   cloud:
     config:
-      import: configserver:http://${EUREKA_HOST:localhost}:${CONFIG_SERVER_PORT:8888}
+      import: configserver:http://${EUREKA_HOST:localhost}:${CONFIG_SERVER_PORT:8888}/eureka/
+
+  application:
+    name: keycloak-resource
 
   security:
     oauth2:
@@ -11,4 +12,4 @@ spring:
         jwt:
           jwk-set-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/certs
 server:
-  port: 9191
+  port: ${SERVER_PORT:9191}

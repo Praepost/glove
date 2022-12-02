@@ -6,7 +6,6 @@ services:
     container_name: keycloak
     volumes:
       - ./keycloak/realm-export.json:/opt/jboss/keycloak/imports/realm-export.json
-#      - ./keycloak/keycloak-add-user.json:/opt/jboss/keycloak/standalone/configuration/keycloak-add-user.json
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
@@ -14,7 +13,7 @@ services:
       DB_USER: ${POSTGRES_USER:-postgres}
       DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin_password
+      KEYCLOAK_PASSWORD: admin
     ports:
       - "8080:8080"
     links:
