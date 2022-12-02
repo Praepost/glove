@@ -1,8 +1,8 @@
-References Documentation
+Glove
 ======================
-[a relative link](backend/readme.md)
+[Backend Documentation](backend/README.md)
 
-[a relative link](frontend/readme.md)
+[Frontend Documentation](frontend/README.md)
 
 Building Keycloak 
 ---------------------------------
