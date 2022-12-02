@@ -9,6 +9,8 @@ logging:
         security:
           web: DEBUG
 spring:
+  config:
+    import: optional:secrets.properties
   application:
     name: ${APPLICATION_NAME:keycloak-gateway-oauth2}
   cloud:
@@ -19,7 +21,7 @@ spring:
         - TokenRelay
       routes:
         - id: product-resource-server
-          uri: http://localhost:9191
+          uri: http://${EUREKA_HOST:localhost}:9191
           predicates:
             - Path=/product/**
   security:
@@ -37,8 +39,8 @@ spring:
           keycloak-spring-gateway-client:
             provider: my-keycloak-provider
             scope: openid
-            client-id: spring-gateway-client
-            client-secret: 4FSL9OHsJEst5j9pNPMbtgrSJaNxnygc
+            client-id: ${KEYCLOAK_CLIENT_ID:spring-gateway-client}
+            client-secret: ${KEYCLOAK_SECRET:3OitJp6DxC27b93QVt8mYOBJvCZEfJ8S}
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
 management:
