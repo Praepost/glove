@@ -1,10 +1,19 @@
 server:
-  port: 9090
-  
+  port: ${SERVER_PORT:9090}
+
+# Enable these to debug the Authorization flow
+logging:
+  level:
+    org:
+      springframework:
+        security:
+          web: DEBUG
 spring:
-  
-  application.name: ${APPLICATION_NAME:keycloak-gateway-oauth2}
+  application:
+    name: ${APPLICATION_NAME:keycloak-gateway-oauth2}
   cloud:
+    config:
+      import: configserver:http://${EUREKA_HOST:localhost}:${CONFIG_SERVER_PORT:8888}/eureka/
     gateway:
       default-filters:
         - TokenRelay
@@ -22,7 +31,7 @@ spring:
             # Individual properties can also be provided this way
             token-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/token
             authorization-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/auth
-#            userinfo-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/userinfo
+        #            userinfo-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/userinfo
         #            user-name-attribute: preferred_username
         registration:
           keycloak-spring-gateway-client:
@@ -32,14 +41,6 @@ spring:
             client-secret: 4FSL9OHsJEst5j9pNPMbtgrSJaNxnygc
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
-
-# Enable these to debug the Authorization flow
-logging:
-  level:
-    org:
-      springframework:
-        security:
-          web: DEBUG
 management:
   endpoints:
     web:
