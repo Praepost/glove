@@ -1,4 +1,4 @@
-Glove
+﻿Glove
 ======================
 [Backend Documentation](backend/README.md)
 
@@ -7,11 +7,11 @@ Glove
 Building Keycloak 
 ---------------------------------
 
-Ensure that you have [Maven installed](https://maven.apache.org/), [Docker installed](hhttps://www.docker.com/).
+Ensure that you have [Maven installed](https://maven.apache.org/), [Docker installed](https://www.docker.com/).
 
 First, clone the Glove repository:
 
-    git clone https://github.com/Praepost/fitter-app.git
+    git clone https://github.com/Praepost/glove.git
     cd backend
 
 To build Glove run:

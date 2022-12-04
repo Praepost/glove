@@ -1,10 +1,12 @@
-/target/
+﻿/target/
 */target/**
 **/target/**
 **/META-INF/
 !.mvn/wrapper/maven-wrapper.jar
 **/secrets.properties
 */secrets.properties
+
+*/jenkins_home/
 
 out/
 .idea/
