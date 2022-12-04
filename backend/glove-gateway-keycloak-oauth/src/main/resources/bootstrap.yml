@@ -1,13 +1,6 @@
 server:
   port: ${SERVER_PORT:9090}
 
-# Enable these to debug the Authorization flow
-logging:
-  level:
-    org:
-      springframework:
-        security:
-          web: DEBUG
 spring:
   config:
     import: optional:secrets.properties
@@ -15,26 +8,28 @@ spring:
     name: ${APPLICATION_NAME:keycloak-gateway-oauth2}
   cloud:
     config:
-      import: configserver:http://${EUREKA_HOST:localhost}:${CONFIG_SERVER_PORT:8888}/eureka/
+      import: configserver:http://${DNS_HOST:localhost}:${CONFIG_SERVER_PORT:8888}/eureka/
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       default-filters:
         - TokenRelay
-      routes:
-        - id: product-resource-server
-          uri: http://${EUREKA_HOST:localhost}:9191
-          predicates:
-            - Path=/product/**
+#      routes:
+#        - id: product-resource-server
+#          uri: http://${EUREKA_HOST:localhost}:9191
+#          predicates:
+#            - Path=/product/**
   security:
     oauth2:
       client:
         provider:
           my-keycloak-provider:
-            issuer-uri: http://localhost:8080/auth/realms/realm
+            issuer-uri: http://${DNS_HOST:localhost}:${KEYCLOAK_SERVER_PORT:8080}/auth/realms/${KEYCLOAK_REALM:realm}
             # Individual properties can also be provided this way
-            token-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/token
-            authorization-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/auth
-        #            userinfo-uri: http://localhost:8080/auth/realms/realm/protocol/openid-connect/userinfo
-        #            user-name-attribute: preferred_username
+            token-uri: http://localhost:${KEYCLOAK_SERVER_PORT:8080}/auth/realms/realm/protocol/openid-connect/token
+            authorization-uri: http://${DNS_HOST:localhost}:${KEYCLOAK_SERVER_PORT:8080}/auth/realms/${KEYCLOAK_REALM:realm}/protocol/openid-connect/auth
         registration:
           keycloak-spring-gateway-client:
             provider: my-keycloak-provider

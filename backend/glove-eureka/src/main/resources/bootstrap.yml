@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME:eureka-server}
+#  cloud:
+#    config:
+#      import: configserver:http://${EUREKA_HOST:localhost}:${CONFIG_SERVER_PORT:8888}/eureka/
+server:
+  port: ${EUREKA_SERVER_PORT:8761}
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

@@ -3,8 +3,9 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
-
+      defaultZone: http://${DNS_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+    prefer-same-zone-eureka: true
+    region: region-1
 spring:
   jpa:
     show-sql: true
